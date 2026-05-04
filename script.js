@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const list = document.querySelector('.carousel .list');
     const thumb = document.querySelector('.carousel .thumbnail');
 
-    // Button click logic
     const moveSlider = (direction) => {
         const items = document.querySelectorAll('.carousel .list .item');
         const thumbs = document.querySelectorAll('.carousel .thumbnail .item');
@@ -18,9 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    nextBtn.addEventListener('click', () => moveSlider('next'));
-    prevBtn.addEventListener('click', () => moveSlider('prev'));
+    nextBtn.onclick = () => moveSlider('next');
+    prevBtn.onclick = () => moveSlider('prev');
 
-    // Auto-play every 7 seconds
-    setInterval(() => moveSlider('next'), 7000);
+    // Auto-run every 9 seconds
+    setInterval(() => moveSlider('next'), 9000);
 });
