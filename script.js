@@ -1,27 +1,40 @@
-let nextDom = document.getElementById('next');
-let prevDom = document.getElementById('prev');
+let nextBtn = document.getElementById('next');
+let prevBtn = document.getElementById('prev');
 
-let carouselDom = document.querySelector('.carousel');
-let SliderDom = carouselDom.querySelector('.carousel .list');
-let thumbnailBorderDom = document.querySelector('.carousel .thumbnail');
+let carousel = document.querySelector('.carousel');
+let listItems = document.querySelector('.carousel .list');
+let thumbItems = document.querySelector('.carousel .thumbnail');
 
-nextDom.onclick = function(){
-    showSlider('next');    
+nextBtn.onclick = function() {
+    showSlider('next');
 }
 
-prevDom.onclick = function(){
+prevBtn.onclick = function() {
     showSlider('prev');
 }
 
-function showSlider(type){
-    let  SliderItemsDom = SliderDom.querySelectorAll('.carousel .list .item');
-    let thumbnailItemsDom = document.querySelectorAll('.carousel .thumbnail .item');
-    
-    if(type === 'next'){
-        SliderDom.appendChild(SliderItemsDom[0]);
-        thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
-    }else{
-        SliderDom.prepend(SliderItemsDom[SliderItemsDom.length - 1]);
-        thumbnailBorderDom.prepend(thumbnailItemsDom[thumbnailItemsDom.length - 1]);
+function showSlider(type) {
+    let items = document.querySelectorAll('.carousel .list .item');
+    let thumbs = document.querySelectorAll('.carousel .thumbnail .item');
+
+    if (type === 'next') {
+        listItems.appendChild(items[0]);
+        thumbItems.appendChild(thumbs[0]);
+        carousel.classList.add('next');
+    } else {
+        listItems.prepend(items[items.length - 1]);
+        thumbItems.prepend(thumbs[thumbs.length - 1]);
+        carousel.classList.add('prev');
     }
+
+    // Reset animation classes
+    setTimeout(() => {
+        carousel.classList.remove('next');
+        carousel.classList.remove('prev');
+    }, 500);
 }
+
+// Auto-play (optional)
+setInterval(() => {
+    nextBtn.click();
+}, 9000);
