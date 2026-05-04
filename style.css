@@ -11,7 +11,6 @@ body {
     width: 100vw;
 }
 
-
 header nav {
     position: absolute;
     top: 20px; left: 0; width: 100%;
@@ -23,7 +22,6 @@ header nav a {
     letter-spacing: 2px; text-shadow: 0 0 10px rgba(0, 242, 255, 0.7);
 }
 
-
 .bg-slider {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -34,15 +32,22 @@ header nav a {
     top: 0; left: 0; width: 100%; height: 100%;
     background-size: cover;
     background-position: center;
-  
     opacity: 0;
-    transition: opacity 1s ease-in-out; 
+    transition: opacity 1.2s ease-in-out; 
 }
-.bg-slide.active {
-    opacity: 1;
+.bg-slide.active { opacity: 1; }
+
+
+.color-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(255, 0, 100, 0.3); /* ডিফল্ট পিঙ্ক আভা */
+    mix-blend-mode: overlay;
+    transition: background 1.5s ease-in-out; /* কালার সুন্দর করে মিলবে */
 }
 
-.bg-overlay {
+
+.dark-overlay {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.5);
@@ -57,19 +62,9 @@ header nav a {
     z-index: 1000;
     width: 80%;
 }
-.title { 
-    font-size: 5em; font-weight: bold; 
-    text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff; 
-    margin-bottom: 10px;
-}
-.topic { 
-    font-size: 5em; font-weight: bold; color: #00f2ff; 
-    text-shadow: 0 0 20px #00f2ff;
-    margin-bottom: 20px;
-}
-.des { 
-    font-size: 1.2em; max-width: 600px; margin: 0 auto 30px auto; line-height: 1.5; color: #ccc;
-}
+.title { font-size: 5em; font-weight: bold; text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff; margin-bottom: 10px; }
+.topic { font-size: 5em; font-weight: bold; color: #00f2ff; text-shadow: 0 0 20px #00f2ff; margin-bottom: 20px; }
+.des { font-size: 1.2em; max-width: 600px; margin: 0 auto 30px auto; line-height: 1.5; color: #ccc; }
 
 
 .buttons { display: flex; gap: 20px; justify-content: center; }
@@ -90,8 +85,7 @@ header nav a {
     position: absolute;
     bottom: 40px; left: 0; width: 100%;
     display: flex; justify-content: space-between; align-items: center;
-    padding: 0 5%; 
-    box-sizing: border-box;
+    padding: 0 5%; box-sizing: border-box;
     z-index: 1000;
 }
 .arrows { display: flex; gap: 15px; }
@@ -101,11 +95,7 @@ header nav a {
 }
 .arrows button:hover { background: rgba(0, 242, 255, 0.4); box-shadow: 0 0 15px #00f2ff; }
 
-.credits { 
-    color: #00f2ff; font-size: 0.85em; opacity: 0.8; text-align: center; 
-    text-shadow: 0 0 8px rgba(0, 242, 255, 0.5);
-}
-
+.credits { color: #00f2ff; font-size: 0.85em; opacity: 0.8; text-align: center; text-shadow: 0 0 8px rgba(0, 242, 255, 0.5); }
 
 @media (max-width: 768px) {
     .title, .topic { font-size: 2.2em; }
