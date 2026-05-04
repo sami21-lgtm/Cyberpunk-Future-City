@@ -102,4 +102,11 @@ header nav a {
     .des { font-size: 0.9em; }
     .bottom-controls { flex-direction: column; gap: 15px; bottom: 20px; }
     .credits { font-size: 0.6em; }
+    
+   
+    .arrows button {
+        width: 70px;
+        height: 70px;
+        font-size: 1.8em;
+    }
 }
