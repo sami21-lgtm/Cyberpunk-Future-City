@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.querySelector('#next');
     const prevBtn = document.querySelector('#prev');
     const list = document.querySelector('.carousel .list');
-    const thumb = document.querySelector('.carousel .thumbnail');
+    const thumb = document.querySelectorAll('.carousel .thumbnail')[0];
 
     const moveSlider = (direction) => {
         const items = document.querySelectorAll('.carousel .list .item');
@@ -17,8 +17,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    nextBtn.onclick = () => moveSlider('next');
-    prevBtn.onclick = () => moveSlider('prev');
+    // Use 'click' as it handles both tap and mouse
+    nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        moveSlider('next');
+    });
 
-    setInterval(() => moveSlider('next'), 9000); // Auto-play
+    prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        moveSlider('prev');
+    });
+
+    // Auto-play
+    let autoNext = setInterval(() => moveSlider('next'), 8000);
+
+    // Reset timer on manual click
+    const resetTimer = () => {
+        clearInterval(autoNext);
+        autoNext = setInterval(() => moveSlider('next'), 8000);
+    };
+    nextBtn.onclick = resetTimer;
+    prevBtn.onclick = resetTimer;
 });
