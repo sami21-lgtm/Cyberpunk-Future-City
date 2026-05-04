@@ -1,40 +1,23 @@
-let nextBtn = document.getElementById('next');
-let prevBtn = document.getElementById('prev');
+document.addEventListener('DOMContentLoaded', () => {
+    let nextBtn = document.querySelector('#next');
+    let prevBtn = document.querySelector('#prev');
+    let carousel = document.querySelector('.carousel');
+    let list = document.querySelector('.carousel .list');
+    let thumb = document.querySelector('.carousel .thumbnail');
 
-let carousel = document.querySelector('.carousel');
-let listItems = document.querySelector('.carousel .list');
-let thumbItems = document.querySelector('.carousel .thumbnail');
+    nextBtn.addEventListener('click', () => {
+        let items = document.querySelectorAll('.carousel .list .item');
+        let thumbs = document.querySelectorAll('.carousel .thumbnail .item');
+        
+        list.appendChild(items[0]);
+        thumb.appendChild(thumbs[0]);
+    });
 
-nextBtn.onclick = function() {
-    showSlider('next');
-}
-
-prevBtn.onclick = function() {
-    showSlider('prev');
-}
-
-function showSlider(type) {
-    let items = document.querySelectorAll('.carousel .list .item');
-    let thumbs = document.querySelectorAll('.carousel .thumbnail .item');
-
-    if (type === 'next') {
-        listItems.appendChild(items[0]);
-        thumbItems.appendChild(thumbs[0]);
-        carousel.classList.add('next');
-    } else {
-        listItems.prepend(items[items.length - 1]);
-        thumbItems.prepend(thumbs[thumbs.length - 1]);
-        carousel.classList.add('prev');
-    }
-
-    // Reset animation classes
-    setTimeout(() => {
-        carousel.classList.remove('next');
-        carousel.classList.remove('prev');
-    }, 500);
-}
-
-// Auto-play (optional)
-setInterval(() => {
-    nextBtn.click();
-}, 9000);
+    prevBtn.addEventListener('click', () => {
+        let items = document.querySelectorAll('.carousel .list .item');
+        let thumbs = document.querySelectorAll('.carousel .thumbnail .item');
+        
+        list.prepend(items[items.length - 1]);
+        thumb.prepend(thumbs[thumbs.length - 1]);
+    });
+});
