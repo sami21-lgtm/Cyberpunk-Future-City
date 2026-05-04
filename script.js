@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let nextBtn = document.querySelector('#next');
-    let prevBtn = document.querySelector('#prev');
-    let carousel = document.querySelector('.carousel');
-    let list = document.querySelector('.carousel .list');
-    let thumb = document.querySelector('.carousel .thumbnail');
+    const nextBtn = document.querySelector('#next');
+    const prevBtn = document.querySelector('#prev');
+    const list = document.querySelector('.carousel .list');
+    const thumb = document.querySelector('.carousel .thumbnail');
 
     nextBtn.addEventListener('click', () => {
         let items = document.querySelectorAll('.carousel .list .item');
