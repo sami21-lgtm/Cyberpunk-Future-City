@@ -17,9 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    nextBtn.addEventListener('click', () => moveSlider('next'));
-    prevBtn.addEventListener('click', () => moveSlider('prev'));
+    nextBtn.onclick = () => moveSlider('next');
+    prevBtn.onclick = () => moveSlider('prev');
 
-    
-    setInterval(() => moveSlider('next'), 9000);
+    setInterval(() => moveSlider('next'), 9000); // Auto-play
 });
