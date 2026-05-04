@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const thumb = document.querySelector('.carousel .thumbnail');
 
     const moveSlider = (direction) => {
-        
         let items = document.querySelectorAll('.carousel .list .item');
         let thumbs = document.querySelectorAll('.carousel .thumbnail .item');
 
