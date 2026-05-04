@@ -13,28 +13,27 @@ document.addEventListener('DOMContentLoaded', () => {
         items.forEach(item => item.classList.remove('active'));
         thumbs.forEach(thumb => thumb.classList.remove('active'));
 
-       
+    
         items[index].classList.add('active');
         thumbs[index].classList.add('active');
         
         currentIndex = index;
     };
 
-  
     nextBtn.addEventListener('click', () => {
         let nextIndex = (currentIndex + 1) % items.length;
         updateSlider(nextIndex);
         resetAutoPlay();
     });
 
-   
+
     prevBtn.addEventListener('click', () => {
         let prevIndex = (currentIndex - 1 + items.length) % items.length;
         updateSlider(prevIndex);
         resetAutoPlay();
     });
 
-    
+   
     thumbs.forEach((thumb, index) => {
         thumb.addEventListener('click', () => {
             updateSlider(index);
@@ -42,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-   
+    
     const startAutoPlay = () => {
         autoPlayInterval = setInterval(() => {
             let nextIndex = (currentIndex + 1) % items.length;
@@ -50,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 9000); 
     };
 
-
+   
     const resetAutoPlay = () => {
         clearInterval(autoPlayInterval);
         startAutoPlay();
