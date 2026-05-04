@@ -1,46 +1,197 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-body { margin: 0; background: #000; color: #fff; font-family: 'Orbitron', sans-serif; overflow: hidden; touch-action: manipulation; }
+body { 
+    margin: 0; 
+    background: #000; 
+    color: #fff; 
+    font-family: 'Orbitron', sans-serif; 
+    overflow: hidden; 
+    touch-action: manipulation; 
+}
 
-header { width: 80%; margin: auto; height: 60px; display: flex; align-items: center; position: relative; z-index: 100; }
-header nav a { color: #00f2ff; margin-right: 30px; text-decoration: none; font-weight: bold; }
 
-.carousel { height: 100vh; width: 100vw; margin-top: -60px; position: relative; perspective: 1500px; }
-.carousel .list .item { width: 100%; height: 100%; position: absolute; inset: 0; opacity: 0; transition: 0.5s; z-index: 1; }
-.carousel .list .item:nth-child(1) { opacity: 1; z-index: 10; }
-.carousel .list .item img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.3); }
+header nav {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    z-index: 1000; 
+}
+header nav a {
+    color: #00f2ff;
+    text-decoration: none;
+    font-size: 0.9em;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(0, 242, 255, 0.7);
+}
 
-/* PowerPoint Style 3D Animation */
-.carousel .list .item:nth-child(1) .content .title,
-.carousel .list .item:nth-child(1) .content .topic,
-.carousel .list .item:nth-child(1) .content .des,
-.carousel .list .item:nth-child(1) .content .buttons {
+.carousel { 
+    height: 100vh; 
+    width: 100vw; 
+    position: relative; 
+    perspective: 1500px; 
+}
+
+.carousel .list .item { 
+    width: 100%; 
+    height: 100%; 
+    position: absolute; 
+    inset: 0; 
+    opacity: 0; 
+    transition: opacity 0.5s ease; 
+    z-index: 1; 
+}
+.carousel .list .item.active { 
+    opacity: 1; 
+    z-index: 10; 
+}
+
+.carousel .list .item img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    filter: brightness(0.3); 
+}
+
+
+.carousel .list .item.active .content .title,
+.carousel .list .item.active .content .topic,
+.carousel .list .item.active .content .des,
+.carousel .list .item.active .content .buttons {
     opacity: 0;
     transform: rotateY(-90deg) translateZ(150px);
     animation: rotateIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
-@keyframes rotateIn { to { opacity: 1; transform: rotateY(0) translateZ(0); } }
 
-.content { position: absolute; top: 20%; left: 50%; transform: translateX(-50%); width: 80%; z-index: 20; }
-.title { font-size: 5em; font-weight: bold; text-shadow: 0 0 10px #ff00ff; }
-.topic { font-size: 5em; font-weight: bold; color: #00f2ff; }
+.carousel .list .item.active .content .topic { animation-delay: 0.2s; }
+.carousel .list .item.active .content .des { animation-delay: 0.4s; }
+.carousel .list .item.active .content .buttons { animation-delay: 0.6s; }
 
-.buttons button { padding: 12px 30px; background: transparent; border: 2px solid #00f2ff; color: #00f2ff; cursor: pointer; font-family: 'Orbitron'; font-weight: bold; transition: 0.4s; margin-right: 10px; }
-.buttons button:hover { background: #00f2ff; color: #000; box-shadow: 0 0 20px #00f2ff; }
+@keyframes rotateIn { 
+    to { 
+        opacity: 1; 
+        transform: rotateY(0) translateZ(0); 
+    } 
+}
 
-.thumbnail { position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; z-index: 100; }
-.thumbnail .item { width: 120px; height: 180px; border: 2px solid #00f2ff; border-radius: 15px; overflow: hidden; }
-.thumbnail .item img { width: 100%; height: 100%; object-fit: cover; }
+.content { 
+    position: absolute; 
+    top: 20%; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 80%; 
+    text-align: center;
+    z-index: 20; 
+}
+.title { 
+    font-size: 5em; 
+    font-weight: bold; 
+    text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff; 
+    margin: 0;
+}
+.topic { 
+    font-size: 5em; 
+    font-weight: bold; 
+    color: #00f2ff; 
+    text-shadow: 0 0 20px #00f2ff;
+    margin: 0;
+}
+.des { 
+    font-size: 1.2em; 
+    max-width: 600px; 
+    margin: 20px auto;
+    line-height: 1.5;
+    color: #ccc;
+}
+.buttons { display: flex; gap: 20px; justify-content: center; margin-top: 30px; }
+.buttons button {
+    padding: 12px 30px;
+    background: transparent;
+    border: 1px solid #ff00ff;
+    color: #ff00ff;
+    font-family: 'Orbitron', sans-serif;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.buttons button:hover {
+    background: #ff00ff;
+    color: #000;
+    box-shadow: 0 0 20px #ff00ff;
+}
 
-.arrows { position: absolute; bottom: 50px; left: 10%; z-index: 999; display: flex; gap: 15px; }
-.arrows button { width: 60px; height: 60px; border-radius: 50%; background: rgba(0, 242, 255, 0.3); border: 2px solid #00f2ff; color: #00f2ff; cursor: pointer; font-size: 1.5em; pointer-events: auto; }
 
-.credits { position: absolute; bottom: 10px; right: 20px; color: #00f2ff; font-size: 0.7em; z-index: 300; opacity: 0.7; }
+.arrows { 
+    position: absolute; 
+    bottom: 50px; 
+    left: 10%; 
+    z-index: 1000; 
+    display: flex; 
+    gap: 15px; 
+}
+.arrows button {
+    width: 60px; 
+    height: 60px; 
+    border-radius: 50%; 
+    background: rgba(0, 242, 255, 0.15);
+    border: 2px solid #00f2ff; 
+    color: #00f2ff; 
+    cursor: pointer; 
+    font-size: 1.5em;
+    transition: 0.3s;
+}
+.arrows button:hover {
+    background: rgba(0, 242, 255, 0.4);
+    box-shadow: 0 0 15px #00f2ff;
+}
 
-/* Mobile Fix */
+
+.thumbnail {
+    position: absolute;
+    bottom: 40px;
+    right: 5%;
+    z-index: 1000;
+    display: flex;
+    gap: 15px;
+}
+.thumbnail .item {
+    width: 100px;
+    height: 70px;
+    border: 2px solid transparent;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: 0.3s;
+    overflow: hidden;
+}
+.thumbnail .item.active {
+    border-color: #00f2ff;
+    opacity: 1;
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.5);
+}
+.thumbnail .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.credits { 
+    position: absolute; 
+    bottom: 10px; 
+    left: 20px; 
+    color: #00f2ff; 
+    font-size: 0.6em; 
+    z-index: 1000; 
+    opacity: 0.6; 
+}
+
+
 @media screen and (max-width: 768px) {
-    .content { top: 15%; width: 95%; }
+    .content { top: 15%; width: 90%; }
     .title, .topic { font-size: 2.2em; }
-    .thumbnail .item { width: 70px; height: 100px; }
-    .arrows { bottom: 20px; left: 50%; transform: translateX(-50%); }
+    .des { font-size: 0.9em; }
+    .arrows { bottom: 120px; left: 50%; transform: translateX(-50%); }
+    .thumbnail { bottom: 20px; right: 50%; transform: translateX(50%); }
+    .thumbnail .item { width: 70px; height: 50px; }
 }
