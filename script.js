@@ -1,60 +1,33 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const nextBtn = document.querySelector('#next');
-    const prevBtn = document.querySelector('#prev');
-    const items = document.querySelectorAll('.carousel .list .item');
-    const thumbs = document.querySelectorAll('.carousel .thumbnail .item');
-    
-    let currentIndex = 0;
-    let autoPlayInterval;
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide-bg');
+const thumbs = document.querySelectorAll('.thumb');
+const totalSlides = slides.length;
 
+
+function changeSlide(index) {
    
-    const updateSlider = (index) => {
-       
-        items.forEach(item => item.classList.remove('active'));
-        thumbs.forEach(thumb => thumb.classList.remove('active'));
+    slides.forEach(slide => slide.classList.remove('active'));
+    thumbs.forEach(thumb => thumb.classList.remove('active'));
 
+
+    slides[index].classList.add('active');
+    thumbs[index].classList.add('active');
     
-        items[index].classList.add('active');
-        thumbs[index].classList.add('active');
-        
-        currentIndex = index;
-    };
+    currentSlide = index;
+}
 
-    nextBtn.addEventListener('click', () => {
-        let nextIndex = (currentIndex + 1) % items.length;
-        updateSlider(nextIndex);
-        resetAutoPlay();
-    });
-
-
-    prevBtn.addEventListener('click', () => {
-        let prevIndex = (currentIndex - 1 + items.length) % items.length;
-        updateSlider(prevIndex);
-        resetAutoPlay();
-    });
-
-   
-    thumbs.forEach((thumb, index) => {
-        thumb.addEventListener('click', () => {
-            updateSlider(index);
-            resetAutoPlay();
-        });
-    });
-
-    
-    const startAutoPlay = () => {
-        autoPlayInterval = setInterval(() => {
-            let nextIndex = (currentIndex + 1) % items.length;
-            updateSlider(nextIndex);
-        }, 9000); 
-    };
-
-   
-    const resetAutoPlay = () => {
-        clearInterval(autoPlayInterval);
-        startAutoPlay();
-    };
-
-    
-    startAutoPlay();
+document.getElementById('next').addEventListener('click', () => {
+    let nextIndex = (currentSlide + 1) % totalSlides;
+    changeSlide(nextIndex);
 });
+
+
+document.getElementById('prev').addEventListener('click', () => {
+    let prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+    changeSlide(prevIndex);
+});
+
+
+window.goToSlide = function(index) {
+    changeSlide(index);
+};
