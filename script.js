@@ -1,33 +1,26 @@
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slide-bg');
-const thumbs = document.querySelectorAll('.thumb');
-const totalSlides = slides.length;
-
-
-function changeSlide(index) {
-   
-    slides.forEach(slide => slide.classList.remove('active'));
-    thumbs.forEach(thumb => thumb.classList.remove('active'));
-
-
-    slides[index].classList.add('active');
-    thumbs[index].classList.add('active');
+document.addEventListener('DOMContentLoaded', () => {
+    const nextBtn = document.getElementById('next');
+    const prevBtn = document.getElementById('prev');
+    const slides = document.querySelectorAll('.bg-slide');
     
-    currentSlide = index;
-}
+    let current = 0;
 
-document.getElementById('next').addEventListener('click', () => {
-    let nextIndex = (currentSlide + 1) % totalSlides;
-    changeSlide(nextIndex);
+   
+    function changeBg(direction) {
+      
+        slides[current].classList.remove('active');
+
+        if (direction === 'next') {
+            current = (current + 1) % slides.length; // পরের ছবিতে যাচ্ছি
+        } else {
+            current = (current - 1 + slides.length) % slides.length; // আগের ছবিতে যাচ্ছি
+        }
+
+      
+        slides[current].classList.add('active');
+    }
+
+    
+    nextBtn.addEventListener('click', () => changeBg('next'));
+    prevBtn.addEventListener('click', () => changeBg('prev'));
 });
-
-
-document.getElementById('prev').addEventListener('click', () => {
-    let prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
-    changeSlide(prevIndex);
-});
-
-
-window.goToSlide = function(index) {
-    changeSlide(index);
-};
