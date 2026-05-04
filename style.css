@@ -9,7 +9,6 @@ body {
     touch-action: manipulation; 
 }
 
-
 header nav {
     position: absolute;
     top: 20px;
@@ -27,7 +26,6 @@ header nav a {
     letter-spacing: 2px;
     text-shadow: 0 0 10px rgba(0, 242, 255, 0.7);
 }
-
 
 .carousel { 
     height: 100vh; 
@@ -66,18 +64,13 @@ header nav a {
     transform: rotateY(-90deg) translateZ(150px);
     animation: rotateIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
-
 .carousel .list .item.active .content .topic { animation-delay: 0.2s; }
 .carousel .list .item.active .content .des { animation-delay: 0.4s; }
 .carousel .list .item.active .content .buttons { animation-delay: 0.6s; }
 
 @keyframes rotateIn { 
-    to { 
-        opacity: 1; 
-        transform: rotateY(0) translateZ(0); 
-    } 
+    to { opacity: 1; transform: rotateY(0) translateZ(0); } 
 }
-
 
 .content { 
     position: absolute; 
@@ -88,36 +81,12 @@ header nav a {
     text-align: center;
     z-index: 20; 
 }
-.title { 
-    font-size: 5em; 
-    font-weight: bold; 
-    text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff; 
-    margin: 0;
-}
-.topic { 
-    font-size: 5em; 
-    font-weight: bold; 
-    color: #00f2ff; 
-    text-shadow: 0 0 20px #00f2ff;
-    margin: 0;
-}
-.des { 
-    font-size: 1.2em; 
-    max-width: 600px; 
-    margin: 20px auto;
-    line-height: 1.5;
-    color: #ccc;
-}
+.title { font-size: 5em; font-weight: bold; text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff; margin: 0; }
+.topic { font-size: 5em; font-weight: bold; color: #00f2ff; text-shadow: 0 0 20px #00f2ff; margin: 0; }
+.des { font-size: 1.2em; max-width: 600px; margin: 20px auto; line-height: 1.5; color: #ccc; }
 
 
-.buttons { 
-    display: flex; 
-    gap: 20px; 
-    justify-content: center; 
-    margin-top: 30px; 
-    position: relative; 
-    z-index: 1000;      
-}
+.buttons { display: flex; gap: 20px; justify-content: center; margin-top: 30px; position: relative; z-index: 1000; }
 .buttons button {
     padding: 14px 35px;
     background: rgba(0, 0, 0, 0.6); 
@@ -130,10 +99,8 @@ header nav a {
     transition: all 0.3s ease;
     position: relative; 
     z-index: 1000;
-   
     box-shadow: 0 0 8px #a3ff00, inset 0 0 8px rgba(163, 255, 0, 0.1);
 }
-
 .buttons button:hover {
     background: #a3ff00; 
     color: #000;
@@ -141,75 +108,42 @@ header nav a {
 }
 
 
-.arrows { 
-    position: absolute; 
-    bottom: 50px; 
-    left: 10%; 
-    z-index: 1000; 
-    display: flex; 
-    gap: 15px; 
-}
+.arrows { position: absolute; bottom: 50px; left: 10%; z-index: 1000; display: flex; gap: 15px; }
 .arrows button {
-    width: 60px; 
-    height: 60px; 
-    border-radius: 50%; 
-    background: rgba(0, 242, 255, 0.15);
-    border: 2px solid #00f2ff; 
-    color: #00f2ff; 
-    cursor: pointer; 
-    font-size: 1.5em;
-    transition: 0.3s;
+    width: 60px; height: 60px; border-radius: 50%; background: rgba(0, 242, 255, 0.15);
+    border: 2px solid #00f2ff; color: #00f2ff; cursor: pointer; font-size: 1.5em; transition: 0.3s;
 }
-.arrows button:hover {
-    background: rgba(0, 242, 255, 0.4);
-    box-shadow: 0 0 15px #00f2ff;
-}
-
+.arrows button:hover { background: rgba(0, 242, 255, 0.4); box-shadow: 0 0 15px #00f2ff; }
 
 .thumbnail {
-    position: absolute;
-    bottom: 40px;
-    right: 5%;
-    z-index: 1000;
-    display: flex;
-    gap: 15px;
+    position: absolute; bottom: 40px; right: 5%; z-index: 1000; display: flex; gap: 15px;
 }
 .thumbnail .item {
-    width: 100px;
-    height: 70px;
-    border: 2px solid transparent;
-    opacity: 0.5;
-    cursor: pointer;
-    transition: 0.3s;
-    overflow: hidden;
+    width: 100px; height: 70px; border: 2px solid transparent; opacity: 0.5; cursor: pointer; transition: 0.3s; overflow: hidden;
 }
-.thumbnail .item.active {
-    border-color: #00f2ff;
-    opacity: 1;
-    box-shadow: 0 0 15px rgba(0, 242, 255, 0.5);
-}
-.thumbnail .item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+.thumbnail .item.active { border-color: #00f2ff; opacity: 1; box-shadow: 0 0 15px rgba(0, 242, 255, 0.5); }
+.thumbnail .item img { width: 100%; height: 100%; object-fit: cover; }
 
 
 .credits { 
     position: absolute; 
-    bottom: 10px; 
-    left: 20px; 
+    bottom: 120px; 
+    left: 50%; 
+    transform: translateX(-50%); 
     color: #00f2ff; 
-    font-size: 0.6em; 
+    font-size: 0.9em; 
     z-index: 1000; 
-    opacity: 0.6; 
+    opacity: 0.8; 
+    text-align: center;
+    text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
 }
 
 @media screen and (max-width: 768px) {
     .content { top: 15%; width: 90%; }
     .title, .topic { font-size: 2.2em; }
     .des { font-size: 0.9em; }
-    .arrows { bottom: 120px; left: 50%; transform: translateX(-50%); }
+    .arrows { bottom: 180px; left: 50%; transform: translateX(-50%); }
+    .credits { bottom: 130px; font-size: 0.6em; width: 90%; }
     .thumbnail { bottom: 20px; right: 50%; transform: translateX(50%); }
     .thumbnail .item { width: 70px; height: 50px; }
 }
