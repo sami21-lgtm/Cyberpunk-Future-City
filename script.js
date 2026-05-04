@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    nextBtn.onclick = () => moveSlider('next');
-    prevBtn.onclick = () => moveSlider('prev');
+    nextBtn.addEventListener('click', () => moveSlider('next'));
+    prevBtn.addEventListener('click', () => moveSlider('prev'));
 
-    // Auto-run every 9 seconds
+    
     setInterval(() => moveSlider('next'), 9000);
 });
