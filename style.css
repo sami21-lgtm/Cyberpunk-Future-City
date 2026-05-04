@@ -1,64 +1,67 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-body {
-    margin: 0;
-    background-color: #000;
-    color: #eee;
-    font-family: 'Orbitron', sans-serif;
-    overflow: hidden;
-}
+body { margin: 0; background: #000; color: #eee; font-family: 'Orbitron', sans-serif; overflow: hidden; }
 
 header {
     width: 80%; margin: auto; height: 60px;
     display: flex; align-items: center;
     position: relative; z-index: 100;
 }
-
 header nav a { color: #00f2ff; margin-right: 30px; text-decoration: none; font-weight: bold; }
 
-.carousel { height: 100vh; width: 100vw; margin-top: -60px; position: relative; }
+.carousel { height: 100vh; width: 100vw; margin-top: -60px; position: relative; perspective: 1000px; }
 
 .carousel .list .item {
-    width: 100%; height: 100%; position: absolute;
-    inset: 0; opacity: 0; transition: 0.5s; z-index: 1;
+    width: 100%; height: 100%; position: absolute; inset: 0; opacity: 0; transition: 0.5s; z-index: 1;
 }
+.carousel .list .item:nth-child(1) { opacity: 1; z-index: 10; }
+.carousel .list .item img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.3); }
 
-.carousel .list .item:nth-child(1) { opacity: 1; z-index: 5; }
-
-.carousel .list .item img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.4); }
-
-.carousel .list .item .content {
-    position: absolute; top: 20%; left: 50%; transform: translateX(-50%);
-    width: 1140px; max-width: 80%; z-index: 10;
-}
-
-.carousel .list .item .title { font-size: 5em; font-weight: bold; text-shadow: 0 0 10px #ff00ff; }
-.carousel .list .item .topic { font-size: 5em; font-weight: bold; color: #00f2ff; }
-
-/* Staggered Animations */
+/* --- PowerPoint Style Rotation Animation --- */
 .carousel .list .item:nth-child(1) .content .title,
 .carousel .list .item:nth-child(1) .content .topic,
 .carousel .list .item:nth-child(1) .content .des,
 .carousel .list .item:nth-child(1) .content .buttons {
-    transform: translateY(50px); filter: blur(20px); opacity: 0;
-    animation: showContent 0.5s 1s linear 1 forwards;
+    opacity: 0;
+    transform: rotateY(-90deg) translateZ(100px); /* 3D Rotation */
+    animation: rotateIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
-@keyframes showContent { to { transform: translateY(0); filter: blur(0); opacity: 1; } }
-.carousel .list .item:nth-child(1) .content .title { animation-delay: 1.2s; }
-.carousel .list .item:nth-child(1) .content .topic { animation-delay: 1.4s; }
-.carousel .list .item:nth-child(1) .content .des { animation-delay: 1.6s; }
-.carousel .list .item:nth-child(1) .content .buttons { animation-delay: 1.8s; }
 
-.thumbnail {
-    position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%);
-    display: flex; gap: 20px; z-index: 100;
+@keyframes rotateIn {
+    to {
+        opacity: 1;
+        transform: rotateY(0) translateZ(0);
+    }
 }
-.thumbnail .item { width: 120px; height: 180px; border: 2px solid #00f2ff; border-radius: 15px; overflow: hidden; }
+
+/* Staggered Delay */
+.carousel .list .item:nth-child(1) .content .title { animation-delay: 0.4s; }
+.carousel .list .item:nth-child(1) .content .topic { animation-delay: 0.6s; }
+.carousel .list .item:nth-child(1) .content .des { animation-delay: 0.8s; }
+.carousel .list .item:nth-child(1) .content .buttons { animation-delay: 1.0s; }
+
+.content { position: absolute; top: 20%; left: 50%; transform: translateX(-50%); width: 80%; z-index: 20; }
+.title { font-size: 5em; font-weight: bold; text-shadow: 0 0 10px #ff00ff; }
+.topic { font-size: 5em; font-weight: bold; color: #00f2ff; }
+
+/* Stylish Cyberpunk Buttons */
+.buttons button {
+    padding: 12px 30px; background: transparent; border: 2px solid #00f2ff;
+    color: #00f2ff; cursor: pointer; font-family: 'Orbitron'; font-weight: bold;
+    transition: 0.4s; margin-right: 10px;
+}
+.buttons button:hover { background: #00f2ff; color: #000; box-shadow: 0 0 20px #00f2ff; }
+.buttons button:nth-child(2) { border-color: #ff00ff; color: #ff00ff; }
+.buttons button:nth-child(2):hover { background: #ff00ff; color: #fff; box-shadow: 0 0 20px #ff00ff; }
+
+.thumbnail { position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; z-index: 100; }
+.thumbnail .item { width: 120px; height: 180px; border: 2px solid #00f2ff; border-radius: 15px; overflow: hidden; opacity: 0.5; }
+.thumbnail .item:nth-child(1) { opacity: 1; border-color: #ff00ff; }
 .thumbnail .item img { width: 100%; height: 100%; object-fit: cover; }
 
 .arrows { position: absolute; bottom: 50px; left: 10%; z-index: 200; display: flex; gap: 15px; }
 .arrows button {
     width: 50px; height: 50px; border-radius: 50%; background: rgba(0, 242, 255, 0.2);
-    border: 2px solid #00f2ff; color: #00f2ff; font-weight: bold; cursor: pointer; transition: 0.3s;
+    border: 2px solid #00f2ff; color: #00f2ff; cursor: pointer; z-index: 210; pointer-events: auto;
 }
-.arrows button:hover { background: #00f2ff; color: #000; box-shadow: 0 0 15px #00f2ff; }
+.arrows button:hover { background: #00f2ff; color: #000; }
