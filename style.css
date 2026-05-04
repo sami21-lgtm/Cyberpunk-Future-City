@@ -4,70 +4,79 @@ body {
     margin: 0;
     background-color: #010101;
     color: #eee;
-    font-family: 'Orbitron', sans-serif; /* Futuristic Font */
+    font-family: 'Orbitron', sans-serif;
 }
 
-header {
-    width: 80%; margin: auto; height: 60px;
-    display: flex; align-items: center;
-    position: relative; z-index: 100;
+/* Base Carousel Setup */
+.carousel {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
 }
 
-header nav a { color: #00f2ff; margin-right: 30px; text-decoration: none; font-weight: bold; }
+.carousel .list .item {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0 0 0 0;
+    opacity: 0; /* Initially hide all */
+    transition: 0.5s;
+}
 
-.carousel { height: 100vh; width: 100vw; overflow: hidden; margin-top: -60px; position: relative; }
+/* Show only the first item */
+.carousel .list .item:nth-child(1) {
+    z-index: 1;
+    opacity: 1;
+}
 
-.carousel .list .item { width: 100%; height: 100%; position: absolute; inset: 0; }
-.carousel .list .item img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6); }
+.carousel .list .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.4);
+}
 
+/* Content Positioning */
 .carousel .list .item .content {
-    position: absolute; top: 20%; left: 50%; transform: translateX(-50%);
-    width: 1140px; max-width: 80%; color: #fff;
+    position: absolute;
+    top: 20%;
+    width: 1140px;
+    max-width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    z-index: 10;
 }
 
-.carousel .list .item .title { font-size: 5em; font-weight: bold; text-shadow: 0 0 10px #ff00ff; }
-.carousel .list .item .topic { font-size: 5em; font-weight: bold; color: #00f2ff; }
+.carousel .list .item .title { 
+    font-size: 5em; 
+    font-weight: bold; 
+    text-shadow: 0 0 10px #ff00ff;
+    line-height: 1em;
+}
+
+.carousel .list .item .topic { 
+    font-size: 5em; 
+    font-weight: bold; 
+    color: #00f2ff; 
+    line-height: 1em;
+}
 
 .carousel .list .item .des {
-    margin-top: 10px;
-    line-height: 1.5em;
-    max-width: 600px;
+    margin: 20px 0;
+    max-width: 500px;
 }
 
-.carousel .list .item .buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.carousel .list .item .buttons button {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px); /* Glassmorphism */
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff; padding: 10px 25px; cursor: pointer;
-    transition: 0.3s;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-
-.carousel .list .item .buttons button:hover { 
-    background: #ff00ff; 
-    border-color: #ff00ff; 
-    box-shadow: 0 0 20px #ff00ff; /* Neon Glow */
-}
-
-/* --- Dynamic Animation Setup (Animal Slider Style) --- */
-
-/* Initial state for all content elements */
-.carousel .list .item:nth-child(1) .content .title,
-.carousel .list .item:nth-child(1) .content .topic,
-.carousel .list .item:nth-child(1) .content .des,
-.carousel .list .item:nth-child(1) .content .buttons {
+/* Animation Setup for Current Slide */
+.carousel .list .item:nth-child(1) .title,
+.carousel .list .item:nth-child(1) .topic,
+.carousel .list .item:nth-child(1) .des,
+.carousel .list .item:nth-child(1) .buttons {
     transform: translateY(50px);
     filter: blur(20px);
     opacity: 0;
-    animation: showContent 0.5s linear 1 forwards;
+    animation: showContent 0.5s ease-in-out 1 forwards;
 }
 
 @keyframes showContent {
@@ -78,23 +87,49 @@ header nav a { color: #00f2ff; margin-right: 30px; text-decoration: none; font-w
     }
 }
 
-/* Staggered Delay for each element */
-.carousel .list .item:nth-child(1) .content .title { animation-delay: 1.0s; }
-.carousel .list .item:nth-child(1) .content .topic { animation-delay: 1.2s; }
-.carousel .list .item:nth-child(1) .content .des { animation-delay: 1.4s; }
-.carousel .list .item:nth-child(1) .content .buttons { animation-delay: 1.6s; }
+.carousel .list .item:nth-child(1) .title { animation-delay: 0.4s; }
+.carousel .list .item:nth-child(1) .topic { animation-delay: 0.6s; }
+.carousel .list .item:nth-child(1) .des { animation-delay: 0.8s; }
+.carousel .list .item:nth-child(1) .buttons { animation-delay: 1.0s; }
 
-/* Thumbnail & Navigation */
-.thumbnail { position: absolute; bottom: 50px; left: 50%; display: flex; gap: 20px; z-index: 100; }
-.thumbnail .item { width: 150px; height: 220px; border: 2px solid #00f2ff; border-radius: 15px; overflow: hidden; position: relative; }
-.thumbnail .item img { width: 100%; height: 100%; object-fit: cover; }
-.thumbnail .item .content { position: absolute; bottom: 10px; left: 10px; color: #fff; font-size: 0.8em; }
-
-.arrows { position: absolute; top: 80%; right: 52%; z-index: 100; display: flex; gap: 10px; }
-.arrows button {
-    width: 50px; height: 50px; border-radius: 50%; background: #00f2ff33;
-    border: 1px solid #00f2ff; color: #00f2ff; cursor: pointer;
-    font-weight: bold; font-size: 1.2em; transition: .3s;
+/* Buttons Style */
+.buttons button {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid #00f2ff;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: 'Orbitron';
+    transition: 0.3s;
 }
 
-.arrows button:hover { background: #00f2ff; color: #000; }
+.buttons button:hover {
+    background: #ff00ff;
+    box-shadow: 0 0 20px #ff00ff;
+}
+
+/* Thumbnails */
+.thumbnail {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    display: flex;
+    gap: 20px;
+    z-index: 100;
+}
+
+.thumbnail .item {
+    width: 150px;
+    height: 220px;
+    border: 2px solid #00f2ff;
+    border-radius: 15px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.thumbnail .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
