@@ -2,16 +2,22 @@
 
 body { margin: 0; background: #000; color: #eee; font-family: 'Orbitron', sans-serif; overflow: hidden; }
 
-header { width: 80%; margin: auto; height: 60px; display: flex; align-items: center; position: relative; z-index: 100; }
+header {
+    width: 80%; margin: auto; height: 60px;
+    display: flex; align-items: center;
+    position: relative; z-index: 100;
+}
 header nav a { color: #00f2ff; margin-right: 30px; text-decoration: none; font-weight: bold; }
 
 .carousel { height: 100vh; width: 100vw; margin-top: -60px; position: relative; perspective: 1500px; }
 
-.carousel .list .item { width: 100%; height: 100%; position: absolute; inset: 0; opacity: 0; transition: 0.5s; z-index: 1; }
+.carousel .list .item {
+    width: 100%; height: 100%; position: absolute; inset: 0; opacity: 0; transition: 0.5s; z-index: 1;
+}
 .carousel .list .item:nth-child(1) { opacity: 1; z-index: 10; }
 .carousel .list .item img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.3); }
 
-/* --- PowerPoint style 3D rotation --- */
+/* --- 3D Rotation Animation --- */
 .carousel .list .item:nth-child(1) .content .title,
 .carousel .list .item:nth-child(1) .content .topic,
 .carousel .list .item:nth-child(1) .content .des,
@@ -21,7 +27,9 @@ header nav a { color: #00f2ff; margin-right: 30px; text-decoration: none; font-w
     animation: rotateIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
-@keyframes rotateIn { to { opacity: 1; transform: rotateY(0) translateZ(0); } }
+@keyframes rotateIn {
+    to { opacity: 1; transform: rotateY(0) translateZ(0); }
+}
 
 .carousel .list .item:nth-child(1) .content .title { animation-delay: 0.4s; }
 .carousel .list .item:nth-child(1) .content .topic { animation-delay: 0.6s; }
@@ -32,10 +40,10 @@ header nav a { color: #00f2ff; margin-right: 30px; text-decoration: none; font-w
 .title { font-size: 5em; font-weight: bold; text-shadow: 0 0 10px #ff00ff; }
 .topic { font-size: 5em; font-weight: bold; color: #00f2ff; }
 
-/* Stylish Neon Buttons */
 .buttons button {
     padding: 12px 30px; background: transparent; border: 2px solid #00f2ff;
-    color: #00f2ff; cursor: pointer; font-family: 'Orbitron'; font-weight: bold; transition: 0.4s; margin-right: 10px;
+    color: #00f2ff; cursor: pointer; font-family: 'Orbitron'; font-weight: bold;
+    transition: 0.4s; margin-right: 10px;
 }
 .buttons button:hover { background: #00f2ff; color: #000; box-shadow: 0 0 20px #00f2ff; }
 .buttons button:nth-child(2) { border-color: #ff00ff; color: #ff00ff; }
@@ -48,6 +56,17 @@ header nav a { color: #00f2ff; margin-right: 30px; text-decoration: none; font-w
 .arrows { position: absolute; bottom: 50px; left: 10%; z-index: 200; display: flex; gap: 15px; }
 .arrows button {
     width: 55px; height: 55px; border-radius: 50%; background: rgba(0, 242, 255, 0.2);
-    border: 2px solid #00f2ff; color: #00f2ff; cursor: pointer; font-weight: bold; transition: 0.3s;
+    border: 2px solid #00f2ff; color: #00f2ff; cursor: pointer; font-weight: bold;
 }
-.arrows button:hover { background: #00f2ff; color: #000; }
+
+
+.credits {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    color: #00f2ff;
+    font-size: 0.8em;
+    z-index: 300;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
