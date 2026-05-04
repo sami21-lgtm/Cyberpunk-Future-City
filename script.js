@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const list = document.querySelector('.carousel .list');
     const thumb = document.querySelector('.carousel .thumbnail');
     
-    let canClick = true; // দ্রুত ক্লিক আটকাতে
+    let canClick = true;
 
     nextBtn.onclick = () => {
         if(!canClick) return;
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         list.appendChild(items[0]);
         thumb.appendChild(thumbs[0]);
 
-        setTimeout(() => { canClick = true; }, 500); // অ্যানিমেশন শেষ হওয়া পর্যন্ত ওয়েট
+        setTimeout(() => { canClick = true; }, 500); 
     };
 
     prevBtn.onclick = () => {
