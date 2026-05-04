@@ -1,3 +1,4 @@
+/* Google Fonts Import */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
 body {
@@ -5,9 +6,10 @@ body {
     background-color: #000;
     color: #eee;
     font-family: 'Orbitron', sans-serif;
-    overflow: hidden;
+    overflow: hidden; /* স্ক্রলবার হাইড করার জন্য */
 }
 
+/* Header & Navigation */
 header {
     width: 80%;
     margin: auto;
@@ -23,12 +25,18 @@ header nav a {
     margin-right: 30px;
     text-decoration: none;
     font-weight: bold;
+    transition: 0.3s;
 }
 
+header nav a:hover {
+    text-shadow: 0 0 10px #00f2ff;
+}
+
+/* Carousel Section */
 .carousel {
     height: 100vh;
     width: 100vw;
-    margin-top: -60px;
+    margin-top: -60px; /* হেডারকে স্লাইডারের ওপরে দেখানোর জন্য */
     position: relative;
 }
 
@@ -37,13 +45,15 @@ header nav a {
     height: 100%;
     position: absolute;
     inset: 0 0 0 0;
-    opacity: 0;
+    opacity: 0; /* শুরুতে সব হাইড থাকবে */
     transition: 0.5s;
+    z-index: 1;
 }
 
+/* শুধুমাত্র একটি একটিভ আইটেম দেখাবে */
 .carousel .list .item:nth-child(1) {
-    z-index: 1;
     opacity: 1;
+    z-index: 5;
 }
 
 .carousel .list .item img {
@@ -53,6 +63,7 @@ header nav a {
     filter: brightness(0.4);
 }
 
+/* Content Area */
 .carousel .list .item .content {
     position: absolute;
     top: 20%;
@@ -61,12 +72,40 @@ header nav a {
     width: 1140px;
     max-width: 80%;
     z-index: 10;
+    color: #fff;
 }
 
-.carousel .list .item .title { font-size: 5em; font-weight: bold; text-shadow: 0 0 10px #ff00ff; }
-.carousel .list .item .topic { font-size: 5em; font-weight: bold; color: #00f2ff; }
+.carousel .list .item .author {
+    font-weight: bold;
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+}
+
+.carousel .list .item .title { 
+    font-size: 5em; 
+    font-weight: bold; 
+    text-shadow: 0 0 10px #ff00ff;
+    line-height: 1.2em;
+}
+
+.carousel .list .item .topic { 
+    font-size: 5em; 
+    font-weight: bold; 
+    color: #00f2ff; 
+    line-height: 1.2em;
+}
+
+.carousel .list .item .des {
+    margin-top: 15px;
+}
 
 /* Buttons & Glassmorphism */
+.carousel .list .item .buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
 .carousel .list .item .buttons button {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
@@ -75,14 +114,42 @@ header nav a {
     padding: 12px 30px;
     cursor: pointer;
     font-family: 'Orbitron';
-    margin-right: 10px;
+    font-weight: bold;
     transition: 0.3s;
 }
 
 .carousel .list .item .buttons button:hover {
     background: #ff00ff;
+    border-color: #ff00ff;
     box-shadow: 0 0 20px #ff00ff;
 }
+
+/* --- ANIMATION LOGIC (Animal Slider Style) --- */
+/* স্লাইড চেঞ্জ হওয়ার সময় টেক্সটগুলো নিচ থেকে আসবে */
+.carousel .list .item:nth-child(1) .content .author,
+.carousel .list .item:nth-child(1) .content .title,
+.carousel .list .item:nth-child(1) .content .topic,
+.carousel .list .item:nth-child(1) .content .des,
+.carousel .list .item:nth-child(1) .content .buttons {
+    transform: translateY(50px);
+    filter: blur(20px);
+    opacity: 0;
+    animation: showContent 0.5s 1s linear 1 forwards;
+}
+
+@keyframes showContent {
+    to {
+        transform: translateY(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+/* প্রতিটি এলিমেন্টের আলাদা ডিলে */
+.carousel .list .item:nth-child(1) .content .title { animation-delay: 1.2s; }
+.carousel .list .item:nth-child(1) .content .topic { animation-delay: 1.4s; }
+.carousel .list .item:nth-child(1) .content .des { animation-delay: 1.6s; }
+.carousel .list .item:nth-child(1) .content .buttons { animation-delay: 1.8s; }
 
 /* Thumbnails */
 .thumbnail {
@@ -101,16 +168,18 @@ header nav a {
     border: 2px solid #00f2ff;
     border-radius: 15px;
     overflow: hidden;
+    flex-shrink: 0;
+    transition: 0.3s;
 }
 
 .thumbnail .item img { width: 100%; height: 100%; object-fit: cover; }
 
-
+/* Arrows (Navigation Buttons) */
 .arrows {
     position: absolute;
     bottom: 50px;
     left: 10%;
-    z-index: 200; /* নিশ্চিত করে যেন বাটনে ক্লিক লাগে */
+    z-index: 200; /* এটি নিশ্চিত করে যে ক্লিক সরাসরি বাটনে লাগবে */
     display: flex;
     gap: 15px;
 }
@@ -123,11 +192,14 @@ header nav a {
     border: 2px solid #00f2ff;
     color: #00f2ff;
     font-weight: bold;
+    font-size: 1.2em;
     cursor: pointer;
     transition: 0.3s;
+    pointer-events: auto; /* ক্লিক ইভেন্ট সক্রিয় করার জন্য */
 }
 
 .arrows button:hover {
     background: #00f2ff;
     color: #000;
+    box-shadow: 0 0 15px #00f2ff;
 }
