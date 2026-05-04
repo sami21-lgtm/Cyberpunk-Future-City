@@ -7,11 +7,28 @@ body {
     font-family: 'Orbitron', sans-serif;
 }
 
-/* Base Carousel Setup */
+header {
+    width: 80%;
+    margin: auto;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+}
+
+header nav a {
+    color: #00f2ff;
+    margin-right: 30px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
 .carousel {
     height: 100vh;
     width: 100vw;
     overflow: hidden;
+    margin-top: -60px;
     position: relative;
 }
 
@@ -20,11 +37,11 @@ body {
     height: 100%;
     position: absolute;
     inset: 0 0 0 0;
-    opacity: 0; /* Initially hide all */
+    opacity: 0; /* সব স্লাইড প্রথমে হাইড থাকবে */
     transition: 0.5s;
 }
 
-/* Show only the first item */
+/* শুধুমাত্র প্রথম (Active) স্লাইডটি দেখাবে */
 .carousel .list .item:nth-child(1) {
     z-index: 1;
     opacity: 1;
@@ -34,41 +51,98 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.4);
+    filter: brightness(0.5);
 }
 
-/* Content Positioning */
 .carousel .list .item .content {
     position: absolute;
     top: 20%;
-    width: 1140px;
-    max-width: 80%;
     left: 50%;
     transform: translateX(-50%);
+    width: 1140px;
+    max-width: 80%;
     color: #fff;
     z-index: 10;
 }
 
-.carousel .list .item .title { 
-    font-size: 5em; 
-    font-weight: bold; 
-    text-shadow: 0 0 10px #ff00ff;
-    line-height: 1em;
+.carousel .list .item .title,
+.carousel .list .item .topic {
+    font-size: 5em;
+    font-weight: bold;
+    line-height: 1.1em;
 }
 
-.carousel .list .item .topic { 
-    font-size: 5em; 
-    font-weight: bold; 
-    color: #00f2ff; 
-    line-height: 1em;
+.carousel .list .item .title { text-shadow: 0 0 10px #ff00ff; }
+.carousel .list .item .topic { color: #00f2ff; }
+
+.carousel .list .item .buttons button {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 10px 25px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-right: 10px;
+    font-family: 'Orbitron';
 }
 
-.carousel .list .item .des {
-    margin: 20px 0;
-    max-width: 500px;
+.carousel .list .item .buttons button:hover {
+    background: #ff00ff;
+    border-color: #ff00ff;
+    box-shadow: 0 0 20px #ff00ff;
 }
 
-/* Animation Setup for Current Slide */
+/* থাম্বনেইল পজিশনিং */
+.thumbnail {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    width: max-content;
+    z-index: 100;
+    display: flex;
+    gap: 20px;
+}
+
+.thumbnail .item {
+    width: 150px;
+    height: 220px;
+    flex-shrink: 0;
+    border: 2px solid #00f2ff;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.thumbnail .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* নেভিগেশন অ্যারো */
+.arrows {
+    position: absolute;
+    top: 80%;
+    right: 52%;
+    z-index: 100;
+    display: flex;
+    gap: 10px;
+}
+
+.arrows button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #00f2ff33;
+    border: 1px solid #00f2ff;
+    color: #00f2ff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+/* অ্যানিমেশন লজিক */
 .carousel .list .item:nth-child(1) .title,
 .carousel .list .item:nth-child(1) .topic,
 .carousel .list .item:nth-child(1) .des,
@@ -76,7 +150,7 @@ body {
     transform: translateY(50px);
     filter: blur(20px);
     opacity: 0;
-    animation: showContent 0.5s ease-in-out 1 forwards;
+    animation: showContent .5s 1s linear 1 forwards;
 }
 
 @keyframes showContent {
@@ -85,51 +159,4 @@ body {
         filter: blur(0);
         opacity: 1;
     }
-}
-
-.carousel .list .item:nth-child(1) .title { animation-delay: 0.4s; }
-.carousel .list .item:nth-child(1) .topic { animation-delay: 0.6s; }
-.carousel .list .item:nth-child(1) .des { animation-delay: 0.8s; }
-.carousel .list .item:nth-child(1) .buttons { animation-delay: 1.0s; }
-
-/* Buttons Style */
-.buttons button {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid #00f2ff;
-    color: #fff;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-family: 'Orbitron';
-    transition: 0.3s;
-}
-
-.buttons button:hover {
-    background: #ff00ff;
-    box-shadow: 0 0 20px #ff00ff;
-}
-
-/* Thumbnails */
-.thumbnail {
-    position: absolute;
-    bottom: 50px;
-    left: 50%;
-    display: flex;
-    gap: 20px;
-    z-index: 100;
-}
-
-.thumbnail .item {
-    width: 150px;
-    height: 220px;
-    border: 2px solid #00f2ff;
-    border-radius: 15px;
-    overflow: hidden;
-    flex-shrink: 0;
-}
-
-.thumbnail .item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
