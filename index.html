@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sami | Cyberpunk Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -16,15 +16,16 @@
         </nav>
     </header>
 
-    
     <div class="bg-slider">
-        <div class="bg-slide active" style="background-image: url('download (1).jpg');"></div>
-        <div class="bg-slide" style="background-image: url('download (2).jpg');"></div>
-        <div class="bg-slide" style="background-image: url('download (3).jpg');"></div>
-        <div class="bg-overlay"></div>
+
+        <div class="bg-slide active" style="background-image: url('https://images.unsplash.com/photo-1563089145-599997674d42?w=1920');" data-color="rgba(255, 0, 100, 0.4)"></div>
+        <div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1534224039826-c7a0eda0e6b3?w=1920');" data-color="rgba(0, 100, 255, 0.4)"></div>
+        <div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1920');" data-color="rgba(163, 255, 0, 0.4)"></div>
+        
+        <div class="color-overlay"></div>
+        <div class="dark-overlay"></div>
     </div>
 
-   
     <div class="main-content">
         <div class="title">CYBERPUNK</div>
         <div class="topic">DHAKA CITY</div>
@@ -36,17 +37,47 @@
         </div>
     </div>
 
-   <div class="bottom-controls">
-<div class="arrows">
-<button id="prevBtn">&lt;</button>
-<button id="nextBtn">&gt;</button>
-</div>
-<div class="credits">
-Development by: Md. Emtiaz Hossain Sami,
-    Dept. of Software Engineering
-</div>
-</div>
+    <div class="bottom-controls">
+        <div class="arrows">
+            <button id="prevBtn">&lt;</button>
+            <button id="nextBtn">&gt;</button>
+        </div>
+        <div class="credits">
+            Development by Md. Emtiaz Hossain Sami, Dept. of Software Engineering
+        </div>
+    </div>
 
-<script src="app.js"></script>
+   
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var nextBtn = document.getElementById('nextBtn');
+            var prevBtn = document.getElementById('prevBtn');
+            var slides = document.querySelectorAll('.bg-slide');
+            var colorOverlay = document.querySelector('.color-overlay');
+            
+            var current = 0;
+
+            function changeBg(direction) {
+                slides[current].classList.remove('active');
+
+                if (direction === 'next') {
+                    current = (current + 1) % slides.length; 
+                } else {
+                    current = (current - 1 + slides.length) % slides.length; 
+                }
+
+                slides[current].classList.add('active');
+                var newColor = slides[current].getAttribute('data-color');
+                colorOverlay.style.background = newColor;
+            }
+
+            nextBtn.addEventListener('click', function() { 
+                changeBg('next'); 
+            });
+            prevBtn.addEventListener('click', function() { 
+                changeBg('prev'); 
+            });
+        });
+    </script>
 </body>
 </html>
